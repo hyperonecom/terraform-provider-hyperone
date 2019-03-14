@@ -6,7 +6,7 @@ Getting The Provider
 ---------------------
 
 ```sh
-# install latest (git) version of docker-machine-driver-hyperone in your $GOPATH/bin
+# install latest (git) version of terraform-provider-hyperone in your $GOPATH/bin
 $ go get -u github.com/hyperonecom/terraform-provider-hyperone
 ```
 
