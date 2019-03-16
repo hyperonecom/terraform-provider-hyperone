@@ -19,11 +19,11 @@ func resourceDisk() *schema.Resource {
 				Type:     schema.TypeString,
 				Required: true,
 			},
-			"size": &schema.Schema{
+			"size": {
 				Type:     schema.TypeInt,
 				Required: true,
 			},
-			"type": &schema.Schema{
+			"type": {
 				Type:     schema.TypeString,
 				Required: true,
 				ForceNew: true,
@@ -41,13 +41,13 @@ func resourceDiskCreate(d *schema.ResourceData, m interface{}) error {
 		Name:    d.Get("name").(string),
 	}
 
-	disk, _, err := client.DiskApi.DiskCreate(context.TODO(), options)
+	resource, _, err := client.DiskApi.DiskCreate(context.TODO(), options)
 
 	if err != nil {
 		return err
 	}
 
-	d.SetId(disk.Id)
+	d.SetId(resource.Id)
 
 	return resourceDiskRead(d, m)
 }
@@ -55,15 +55,15 @@ func resourceDiskCreate(d *schema.ResourceData, m interface{}) error {
 func resourceDiskRead(d *schema.ResourceData, m interface{}) error {
 	client := m.(*Config).client
 
-	disk, _, err := client.DiskApi.DiskShow(context.TODO(), d.Id())
+	resource, _, err := client.DiskApi.DiskShow(context.TODO(), d.Id())
 
 	if err != nil {
 		return err
 	}
 
-	d.Set("size", disk.Size)
-	d.Set("name", disk.Name)
-	d.Set("type", disk.Type)
+	d.Set("size", resource.Size)
+	d.Set("name", resource.Name)
+	d.Set("type", resource.Type)
 
 	return nil
 }
