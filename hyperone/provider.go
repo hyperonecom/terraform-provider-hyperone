@@ -20,7 +20,7 @@ func Provider() *schema.Provider {
 				Type:     schema.TypeString,
 				Required: true,
 				DefaultFunc: func() (interface{}, error) {
-					if v := os.Getenv("HYPERONE_TOKEN"); v != "" {
+					if v := os.Getenv("HYPERONE_ACCESS_TOKEN_SECRET"); v != "" {
 						return v, nil
 					}
 

@@ -15,7 +15,7 @@ Using the provider
 
 ```
 provider "hyperone" {
-    token   = "..."      # you can also use HYPERONE_TOKEN enviroment variable
+    token   = "..."      # you can also use HYPERONE_ACCESS_TOKEN_SECRET enviroment variable
     project = "..."      # you can also use HYPERONE_PROJECT enviroment variable
 }
 
