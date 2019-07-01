@@ -25,3 +25,13 @@ resource "hyperone_disk" "disk" {
     name = "nginx-logs"
 }
 ```
+
+Using H1 cli to set the environment variables
+----------------------
+
+```
+$ eval $(h1 env)
+```
+
+- [Reference documentation for `h1 env`](https://www.hyperone.com/tools/cli/resources/reference/env.html#syntax)
+- [Documentation for h1-cli](https://www.hyperone.com/tools/cli/)
