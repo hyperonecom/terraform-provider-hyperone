@@ -24,6 +24,28 @@ resource "hyperone_disk" "disk" {
     type = "volume"
     name = "nginx-logs"
 }
+
+resource "hyperone_firewall" "firewall" {
+    name = "nginx-firewall"
+
+    ingress {
+        name = "http"
+        action = "allow"
+        filter = [ "tcp:80" ]
+        external = [ "0.0.0.0/0" ]
+        internal = [ "*" ]
+        priority = 300
+    }
+
+    egress {
+        name = "all"
+        action = "allow"
+        filter = [ "tcp", "udp" ]
+        external = [ "0.0.0.0/0" ]
+        internal = [ "*" ]
+        priority = 100
+    }
+}
 ```
 
 Using H1 cli to set the environment variables

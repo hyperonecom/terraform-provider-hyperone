@@ -53,9 +53,10 @@ func Provider() *schema.Provider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
-			"hyperone_disk": resourceDisk(),
-			"hyperone_vm":   resourceVM(),
-			"hyperone_ip":   resourceIP(),
+			"hyperone_disk":     resourceDisk(),
+			"hyperone_vm":       resourceVM(),
+			"hyperone_ip":       resourceIP(),
+			"hyperone_firewall": resourceFirewall(),
 		},
 		ConfigureFunc: providerConfigure,
 	}
