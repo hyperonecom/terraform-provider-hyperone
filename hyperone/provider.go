@@ -13,6 +13,7 @@ const (
 	configPath = "~/.h1-cli/conf.json"
 )
 
+// Provider Init provider
 func Provider() *schema.Provider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{

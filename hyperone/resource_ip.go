@@ -9,10 +9,10 @@ import (
 
 func resourceIP() *schema.Resource {
 	return &schema.Resource{
-		Create: resourceIpCreate,
-		Read:   resourceIpRead,
-		Update: resourceIpUpdate,
-		Delete: resourceIpDelete,
+		Create: resourceIPCreate,
+		Read:   resourceIPRead,
+		Update: resourceIPUpdate,
+		Delete: resourceIPDelete,
 
 		Schema: map[string]*schema.Schema{
 			"address": {
@@ -29,7 +29,7 @@ func resourceIP() *schema.Resource {
 	}
 }
 
-func resourceIpCreate(d *schema.ResourceData, m interface{}) error {
+func resourceIPCreate(d *schema.ResourceData, m interface{}) error {
 	client := m.(*Config).client
 
 	options := openapi.IpCreate{}
@@ -42,10 +42,10 @@ func resourceIpCreate(d *schema.ResourceData, m interface{}) error {
 
 	d.SetId(resource.Id)
 
-	return resourceIpRead(d, m)
+	return resourceIPRead(d, m)
 }
 
-func resourceIpRead(d *schema.ResourceData, m interface{}) error {
+func resourceIPRead(d *schema.ResourceData, m interface{}) error {
 	client := m.(*Config).client
 
 	resource, _, err := client.IpApi.IpShow(context.TODO(), d.Id())
@@ -60,7 +60,7 @@ func resourceIpRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
-func resourceIpUpdate(d *schema.ResourceData, m interface{}) error {
+func resourceIPUpdate(d *schema.ResourceData, m interface{}) error {
 	client := m.(*Config).client
 
 	// Enable partial state mode
@@ -83,10 +83,10 @@ func resourceIpUpdate(d *schema.ResourceData, m interface{}) error {
 	// all fields again.
 	d.Partial(false)
 
-	return resourceIpRead(d, m)
+	return resourceIPRead(d, m)
 }
 
-func resourceIpDelete(d *schema.ResourceData, m interface{}) error {
+func resourceIPDelete(d *schema.ResourceData, m interface{}) error {
 	client := m.(*Config).client
 
 	_, err := client.IpApi.IpDelete(context.TODO(), d.Id())
