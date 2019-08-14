@@ -59,6 +59,21 @@ func resourceVM() *schema.Resource {
 					},
 				},
 			},
+			"netadp": {
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"ip": {
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Schema{
+								Type: schema.TypeString,
+							},
+						},
+					},
+				},
+			},
 			"fqdn": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -76,6 +91,7 @@ func resourceVMCreate(d *schema.ResourceData, m interface{}) error {
 		Image:   d.Get("image").(string),
 		SshKeys: expandSet(d.Get("sshkeys").(*schema.Set).List()),
 		Disk:    expandDisk(d.Get("disk").([]interface{})),
+		Netadp:  expandNetadp(d.Get("netadp").([]interface{})),
 	}
 
 	resource, _, err := client.VmApi.VmCreate(context.TODO(), options)
@@ -103,6 +119,19 @@ func expandDisk(config []interface{}) []openapi.VmCreateDisk {
 			Name:    disk["name"].(string),
 			Service: disk["type"].(string),
 			Size:    float32(disk["size"].(int)),
+		}
+	}
+
+	return arr
+}
+func expandNetadp(config []interface{}) []openapi.VmCreateNetadp {
+	arr := make([]openapi.VmCreateNetadp, len(config))
+	for i, v := range config {
+		netadp := v.(map[string]interface{})
+
+		arr[i] = openapi.VmCreateNetadp{
+			Ip:      expandSet(netadp["ip"].([]interface{})),
+			Service: "public",
 		}
 	}
 
