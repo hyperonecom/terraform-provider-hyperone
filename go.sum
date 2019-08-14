@@ -206,6 +206,8 @@ github.com/hyperonecom/h1-client-go v0.0.0-20190613151157-13c3a5a424be h1:7xsiI4
 github.com/hyperonecom/h1-client-go v0.0.0-20190613151157-13c3a5a424be/go.mod h1:dpKTh1rUna4NrhX7NYcT8TGY91qDXyyUWSy7HT/glmc=
 github.com/hyperonecom/h1-client-go v0.0.0-20190813145154-4a4663b5ae43 h1:UjJa3epwG5lH6rufjCDSmI3/cV43d6hMpg48eZUn1e8=
 github.com/hyperonecom/h1-client-go v0.0.0-20190813145154-4a4663b5ae43/go.mod h1:dpKTh1rUna4NrhX7NYcT8TGY91qDXyyUWSy7HT/glmc=
+github.com/hyperonecom/h1-client-go v0.0.0-20190814164135-512317a42283 h1:fPVVcZmZbu6d2cuLZ5cpWMa8tmElOKdOE+dY7jLVv84=
+github.com/hyperonecom/h1-client-go v0.0.0-20190814164135-512317a42283/go.mod h1:dpKTh1rUna4NrhX7NYcT8TGY91qDXyyUWSy7HT/glmc=
 github.com/jellevandenhooff/dkim v0.0.0-20150330215556-f50fe3d243e1/go.mod h1:E0B/fFc00Y+Rasa88328GlI/XbtyysCtTHZS8h7IrBU=
 github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=
 github.com/jmespath/go-jmespath v0.0.0-20160202185014-0b12d6b521d8/go.mod h1:Nht3zPeWKUH0NzdCt2Blrr5ys8VGpn0CEB0cQHVjt7k=
