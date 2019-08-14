@@ -23,21 +23,21 @@ func resourceFirewall() *schema.Resource {
 			Required: true,
 		},
 		"filter": {
-			Type:     schema.TypeSet,
+			Type:     schema.TypeList,
 			Required: true,
 			Elem: &schema.Schema{
 				Type: schema.TypeString,
 			},
 		},
 		"external": {
-			Type:     schema.TypeSet,
+			Type:     schema.TypeList,
 			Required: true,
 			Elem: &schema.Schema{
 				Type: schema.TypeString,
 			},
 		},
 		"internal": {
-			Type:     schema.TypeSet,
+			Type:     schema.TypeList,
 			Required: true,
 			Elem: &schema.Schema{
 				Type: schema.TypeString,
@@ -89,9 +89,9 @@ func expandRules(config []interface{}) []openapi.FirewallCreateIngress {
 			Name:     rule["name"].(string),
 			Action:   rule["action"].(string),
 			Priority: float32(rule["priority"].(int)),
-			Filter:   expandSet(rule["filter"].(*schema.Set).List()),
-			External: expandSet(rule["external"].(*schema.Set).List()),
-			Internal: expandSet(rule["internal"].(*schema.Set).List()),
+			Filter:   expandSet(rule["filter"].([]interface{})),
+			External: expandSet(rule["external"].([]interface{})),
+			Internal: expandSet(rule["internal"].([]interface{})),
 		}
 	}
 
@@ -141,9 +141,9 @@ func mapRules(arr []interface{}) []map[string]interface{} {
 		rule := v.(map[string]interface{})
 
 		ret[i] = rule
-		ret[i]["filter"] = expandSet(rule["filter"].(*schema.Set).List())
-		ret[i]["external"] = expandSet(rule["external"].(*schema.Set).List())
-		ret[i]["internal"] = expandSet(rule["internal"].(*schema.Set).List())
+		ret[i]["filter"] = expandSet(rule["filter"].([]interface{}))
+		ret[i]["external"] = expandSet(rule["external"].([]interface{}))
+		ret[i]["internal"] = expandSet(rule["internal"].([]interface{}))
 	}
 
 	return ret

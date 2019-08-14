@@ -31,7 +31,7 @@ func resourceVM() *schema.Resource {
 				ForceNew: true,
 			},
 			"sshkeys": {
-				Type:     schema.TypeSet,
+				Type:     schema.TypeList,
 				Required: true,
 				ForceNew: true,
 				Elem: &schema.Schema{
@@ -89,7 +89,7 @@ func resourceVMCreate(d *schema.ResourceData, m interface{}) error {
 		Service: d.Get("type").(string),
 		Name:    d.Get("name").(string),
 		Image:   d.Get("image").(string),
-		SshKeys: expandSet(d.Get("sshkeys").(*schema.Set).List()),
+		SshKeys: expandSet(d.Get("sshkeys").([]interface{})),
 		Disk:    expandDisk(d.Get("disk").([]interface{})),
 		Netadp:  expandNetadp(d.Get("netadp").([]interface{})),
 	}
