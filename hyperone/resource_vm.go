@@ -71,6 +71,11 @@ func resourceVM() *schema.Resource {
 								Type: schema.TypeString,
 							},
 						},
+						"firewall": {
+							Type:     schema.TypeString,
+							Optional: true,
+							ForceNew: true,
+						},
 					},
 				},
 			},
@@ -130,8 +135,9 @@ func expandNetadp(config []interface{}) []openapi.VmCreateNetadp {
 		netadp := v.(map[string]interface{})
 
 		arr[i] = openapi.VmCreateNetadp{
-			Ip:      expandSet(netadp["ip"].([]interface{})),
-			Service: "public",
+			Ip:       expandSet(netadp["ip"].([]interface{})),
+			Firewall: netadp["firewall"].(string),
+			Service:  "public",
 		}
 	}
 
