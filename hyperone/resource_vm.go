@@ -59,6 +59,10 @@ func resourceVM() *schema.Resource {
 					},
 				},
 			},
+			"fqdn": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -81,15 +85,10 @@ func resourceVMCreate(d *schema.ResourceData, m interface{}) error {
 
 	d.SetId(resource.Id)
 
-	netadps, _, err := client.VmApi.VmListNetadp(context.TODO(), resource.Id)
-	if err != nil {
-		return err
-	}
-
 	// Initialize the connection info
 	d.SetConnInfo(map[string]string{
 		"type": "ssh",
-		"host": netadps[0].Ip[0].Address,
+		"host": resource.Fqdn,
 	})
 
 	return resourceVMRead(d, m)
@@ -129,6 +128,7 @@ func resourceVMRead(d *schema.ResourceData, m interface{}) error {
 
 	d.Set("name", resource.Name)
 	d.Set("type", resource.Flavour)
+	d.Set("fqdn", resource.Fqdn)
 
 	return nil
 }
