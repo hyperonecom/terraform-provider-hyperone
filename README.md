@@ -1,6 +1,8 @@
 HyperOne Terraform Provider
 ==================
 
+[![Build Status](https://travis-ci.com/hyperonecom/terraform-provider-hyperone.svg?branch=master)](https://travis-ci.com/hyperonecom/terraform-provider-hyperone)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hyperonecom/terraform-provider-hyperone)](https://goreportcard.com/report/github.com/hyperonecom/terraform-provider-hyperone)
 
 Getting The Provider
 ---------------------
