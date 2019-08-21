@@ -34,6 +34,10 @@ func resourceIPCreate(d *schema.ResourceData, m interface{}) error {
 
 	options := openapi.IpCreate{}
 
+	if v, ok := d.GetOk("ptr_record"); ok {
+		options.PtrRecord = v.(string)
+	}
+
 	resource, _, err := client.IpApi.IpCreate(context.TODO(), options)
 
 	if err != nil {

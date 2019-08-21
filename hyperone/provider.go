@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform/terraform"
 	homedir "github.com/mitchellh/go-homedir"
 )
 
@@ -14,7 +15,7 @@ const (
 )
 
 // Provider Init provider
-func Provider() *schema.Provider {
+func Provider() terraform.ResourceProvider {
 	return &schema.Provider{
 		Schema: map[string]*schema.Schema{
 			"token": {
