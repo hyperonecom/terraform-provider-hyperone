@@ -25,6 +25,10 @@ func resourceIP() *schema.Resource {
 				Computed: true,
 				Optional: true,
 			},
+			"fqdn": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -60,6 +64,7 @@ func resourceIPRead(d *schema.ResourceData, m interface{}) error {
 
 	d.Set("address", resource.Address)
 	d.Set("ptr_record", resource.PtrRecord)
+	d.Set("fqdn", resource.Fqdn)
 
 	return nil
 }
