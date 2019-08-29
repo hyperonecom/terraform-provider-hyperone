@@ -3,10 +3,11 @@ package hyperone
 import (
 	"context"
 	"fmt"
+	"testing"
+
 	"github.com/hashicorp/terraform/helper/resource"
 	"github.com/hashicorp/terraform/terraform"
 	openapi "github.com/hyperonecom/h1-client-go"
-	"testing"
 )
 
 func TestAccHyperoneIp_basic(t *testing.T) {
@@ -17,16 +18,16 @@ func TestAccHyperoneIp_basic(t *testing.T) {
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccHyperoneIpConfig,
+				Config: testAccHyperoneIPConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccIp("hyperone_ip.foo", &n),
+					testAccIP("hyperone_ip.foo", &n),
 				),
 			},
 		},
 	})
 }
 
-func testAccIp(n string, ip *openapi.Ip) resource.TestCheckFunc {
+func testAccIP(n string, ip *openapi.Ip) resource.TestCheckFunc {
 	return func(s *terraform.State) error {
 		rs, ok := s.RootModule().Resources[n]
 		if !ok {
@@ -47,7 +48,7 @@ func testAccIp(n string, ip *openapi.Ip) resource.TestCheckFunc {
 	}
 }
 
-const testAccHyperoneIpConfig = `
+const testAccHyperoneIPConfig = `
 resource "hyperone_ip" "foo" {
 }
 `
@@ -60,9 +61,9 @@ func TestAccHyperoneIp_ptr(t *testing.T) {
 		Providers: testAccProviders,
 		Steps: []resource.TestStep{
 			{
-				Config: testAccHyperoneIpPtrConfig,
+				Config: testAccHyperoneIPPtrConfig,
 				Check: resource.ComposeTestCheckFunc(
-					testAccIp("hyperone_ip.foo", &n),
+					testAccIP("hyperone_ip.foo", &n),
 					resource.TestCheckResourceAttr("hyperone_ip.foo", "ptr_record", "ptr.example.com"),
 				),
 			},
@@ -70,7 +71,7 @@ func TestAccHyperoneIp_ptr(t *testing.T) {
 	})
 }
 
-const testAccHyperoneIpPtrConfig = `
+const testAccHyperoneIPPtrConfig = `
 resource "hyperone_ip" "foo" {
   ptr_record = "ptr.example.com"
 }
