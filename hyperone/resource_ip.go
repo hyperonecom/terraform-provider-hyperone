@@ -25,6 +25,11 @@ func resourceIP() *schema.Resource {
 				Computed: true,
 				Optional: true,
 			},
+			"network": {
+				Type:     schema.TypeString,
+				Computed: true,
+				Optional: true,
+			},
 			"fqdn": {
 				Type:     schema.TypeString,
 				Computed: true,
@@ -40,6 +45,10 @@ func resourceIPCreate(d *schema.ResourceData, m interface{}) error {
 
 	if v, ok := d.GetOk("ptr_record"); ok {
 		options.PtrRecord = v.(string)
+	}
+
+	if v, ok := d.GetOk("network"); ok {
+		options.Network = v.(string)
 	}
 
 	resource, _, err := client.IpApi.IpCreate(context.TODO(), options)
@@ -65,6 +74,7 @@ func resourceIPRead(d *schema.ResourceData, m interface{}) error {
 	d.Set("address", resource.Address)
 	d.Set("ptr_record", resource.PtrRecord)
 	d.Set("fqdn", resource.Fqdn)
+	d.Set("network", resource.Network)
 
 	return nil
 }
