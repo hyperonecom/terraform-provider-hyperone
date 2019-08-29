@@ -59,6 +59,9 @@ func Provider() terraform.ResourceProvider {
 			"hyperone_ip":       resourceIP(),
 			"hyperone_firewall": resourceFirewall(),
 		},
+		DataSourcesMap: map[string]*schema.Resource{
+			"hyperone_ip": dataSourceIP(),
+		},
 		ConfigureFunc: providerConfigure,
 	}
 }
