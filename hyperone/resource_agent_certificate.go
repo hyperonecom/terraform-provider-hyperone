@@ -64,7 +64,7 @@ func resourceAgentCertificateRead(d *schema.ResourceData, m interface{}) error {
 	client := m.(*Config).client
 
 	log.Printf("[DEBUG] Reading Agent credential: %s:%s", d.Get("agent").(string), d.Id())
-	resource, _, err := client.AgentApi.AgentGetCredentialId(context.TODO(), d.Get("agent").(string), d.Id())
+	resource, _, err := client.AgentApi.AgentGetCredentialcertificateId(context.TODO(), d.Get("agent").(string), d.Id())
 
 	if err != nil {
 		return err
@@ -80,7 +80,8 @@ func resourceAgentCertificateRead(d *schema.ResourceData, m interface{}) error {
 func resourceAgentCertificateDelete(d *schema.ResourceData, m interface{}) error {
 	client := m.(*Config).client
 	log.Printf("[DEBUG] Deleting Agent credential: %s", d.Get("agent").(string))
-	_, _, err := client.AgentApi.AgentDeleteCredentialId(context.TODO(), d.Get("agent").(string), d.Id())
+
+	_, _, err := client.AgentApi.AgentDeleteCredentialcertificateId(context.TODO(), d.Get("agent").(string), d.Id())
 
 	if err != nil {
 		return err
