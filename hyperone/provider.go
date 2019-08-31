@@ -54,10 +54,12 @@ func Provider() terraform.ResourceProvider {
 			},
 		},
 		ResourcesMap: map[string]*schema.Resource{
-			"hyperone_disk":     resourceDisk(),
-			"hyperone_vm":       resourceVM(),
-			"hyperone_ip":       resourceIP(),
-			"hyperone_firewall": resourceFirewall(),
+			"hyperone_disk":              resourceDisk(),
+			"hyperone_vm":                resourceVM(),
+			"hyperone_ip":                resourceIP(),
+			"hyperone_firewall":          resourceFirewall(),
+			"hyperone_agent":             resourceAgent(),
+			"hyperone_agent_certificate": resourceAgentCertificate(),
 		},
 		DataSourcesMap: map[string]*schema.Resource{
 			"hyperone_ip": dataSourceIP(),
