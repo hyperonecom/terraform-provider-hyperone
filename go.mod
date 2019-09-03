@@ -8,3 +8,5 @@ require (
 	github.com/hyperonecom/h1-client-go v0.0.0-20190814164135-512317a42283
 	github.com/mitchellh/go-homedir v1.1.0
 )
+
+replace git.apache.org/thrift.git => github.com/apache/thrift v0.0.0-20180902110319-2566ecd5d999
