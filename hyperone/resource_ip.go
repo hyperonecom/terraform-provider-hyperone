@@ -3,7 +3,7 @@ package hyperone
 import (
 	"context"
 
-	"github.com/hashicorp/terraform/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 	openapi "github.com/hyperonecom/h1-client-go"
 )
 
