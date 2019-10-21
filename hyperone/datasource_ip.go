@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/hashicorp/terraform/helper/schema"
-	"github.com/hashicorp/terraform/helper/validation"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
 )
 
 func dataSourceIP() *schema.Resource {
@@ -54,6 +54,7 @@ func dataSourceIPRead(d *schema.ResourceData, m interface{}) error {
 	d.Set("address", resource.Address)
 	d.Set("ptr_record", resource.PtrRecord)
 	d.Set("network", resource.Network)
+	d.Set("fqdn", resource.Fqdn)
 
 	return nil
 }

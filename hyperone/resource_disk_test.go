@@ -3,10 +3,11 @@ package hyperone
 import (
 	"context"
 	"fmt"
-	"github.com/hashicorp/terraform/helper/resource"
-	"github.com/hashicorp/terraform/terraform"
-	openapi "github.com/hyperonecom/h1-client-go"
 	"testing"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/resource"
+	"github.com/hashicorp/terraform-plugin-sdk/terraform"
+	openapi "github.com/hyperonecom/h1-client-go"
 )
 
 func TestAccHyperoneDisk_basic(t *testing.T) {
