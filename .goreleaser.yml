@@ -1,0 +1,74 @@
+# This is an example goreleaser.yaml file with some sane defaults.
+# Make sure to check the documentation at http://goreleaser.com
+before:
+  hooks:
+    # you may remove this if you don't use vgo
+    - go mod tidy
+    # you may remove this if you don't need go generate
+    # - go generate ./...
+
+builds:
+- id: hyperone
+  binary: terraform-provider-hyperone_{{ .Version }}
+  main: main.go
+  goos:
+    - linux
+    - darwin
+    - windows
+  goarch:
+    - amd64
+  env:
+  - CGO_ENABLED=0
+  ldflags:
+  - -s -w -extldflags "-static" -X "github.com/dikhan/terraform-provider-openapi/openapi/version.Version={{.Version}}" -X "github.com/dikhan/terraform-provider-openapi/openapi/version.Commit={{.Commit}}" -X "github.com/dikhan/terraform-provider-openapi/openapi/version.Date={{.Date}}"
+- id: rootbox
+  binary: terraform-provider-rootbox_{{ .Version }}
+  main: main.go
+  goos:
+    - linux
+    - darwin
+    - windows
+  goarch:
+    - amd64
+  env:
+  - CGO_ENABLED=0
+  ldflags:
+  - -s -w -extldflags "-static" -X "github.com/dikhan/terraform-provider-openapi/openapi/version.Version={{.Version}}" -X "github.com/dikhan/terraform-provider-openapi/openapi/version.Commit={{.Commit}}" -X "github.com/dikhan/terraform-provider-openapi/openapi/version.Date={{.Date}}"
+
+release:
+  name_template: "v{{.Version}}"
+  # If set to true, will mark the release as not ready for production.
+  # Default is false.
+  prerelease: false
+
+archives:
+  - id: hyperone
+    name_template: "{{.Binary}}_{{.Version}}_{{.Os}}_{{.Arch}}"
+    builds:
+    - hyperone
+    format: tar.gz
+    format_overrides:
+    - goos: windows
+      format: zip
+  - id: rootbox
+    name_template: "{{.Binary}}_{{.Version}}_{{.Os}}_{{.Arch}}"
+    builds:
+    - rootbox
+    format: tar.gz
+    format_overrides:
+    - goos: windows
+      format: zip
+
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  # set it to true if you wish to skip the changelog generation
+  skip: true
+
+  sort: asc
+  filters:
+    exclude:
+    - '^docs:'
+    - '^test:'
