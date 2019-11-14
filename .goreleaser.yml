@@ -43,7 +43,7 @@ release:
 
 archives:
   - id: hyperone
-    name_template: "{{.Binary}}_{{.Version}}_{{.Os}}_{{.Arch}}"
+    name_template: "{{.Binary}}_{{.Os}}_{{.Arch}}"
     builds:
     - hyperone
     format: tar.gz
@@ -51,7 +51,7 @@ archives:
     - goos: windows
       format: zip
   - id: rootbox
-    name_template: "{{.Binary}}_{{.Version}}_{{.Os}}_{{.Arch}}"
+    name_template: "{{.Binary}}_{{.Os}}_{{.Arch}}"
     builds:
     - rootbox
     format: tar.gz
